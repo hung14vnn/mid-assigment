@@ -14,7 +14,6 @@ import Container from '@mui/material/Container';
 import {Alert} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import React,{useEffect,useState} from 'react'
-import Signup from './signup';
 
 function Copyright(props) {
   return (
@@ -31,12 +30,12 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function Login() {
+export default function Signup() {
   const [value, setValues] = React.useState({
     username: '',
     password: '',
   });
-  const [login,setLogin] = useState(false);
+
 
   const [touched, setTouched] = React.useState({
     username: false,
@@ -51,41 +50,27 @@ export default function Login() {
     });
   };
 
-
-  useEffect(() => {
-    if(sessionStorage.getItem("login")){
-      setLogin(true)
-    }
-},[])
-
-
-if(login){
-  window.location.href = '/';
-}
-
-
   const handleSubmit = (event) => {
     event.preventDefault();
-   fetch('https://localhost:7281/User/login', {
+   fetch('https://localhost:7281/User/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(value),
     })
-      .then(response => response.json())  
-      .then(function (response) {
-        if(response === true){
-          sessionStorage.setItem('login',true);
-          window.location.reload();
-        }
-        else{
-          alert("Invalid Credentials");
-        }
-      })
-  };
-
-
+    .then(response => response.json())  
+    .then(function (response) {
+      if(response === true){
+        alert('Successfully Registered');
+        window.location.href = '/login';
+        window.location.reload();
+      }
+      else{
+        alert("Account Already Exists");
+      }
+    })
+};
   const handleInputBlur = (event) => {
     setTouched({
       ...touched,
@@ -133,7 +118,7 @@ if(login){
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Login
+            Sign Up
           </Typography>
           <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
@@ -176,10 +161,7 @@ if(login){
               {errorMessage.password}
             </FormHelperText>
           )}
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+
             <Button
               type="submit"
               fullWidth
@@ -188,7 +170,7 @@ if(login){
               onClick={handleSubmit}
               sx={{ mt: 2, mb: 2 }}
             >
-              Sign In
+              Sign Up
             </Button>
             <Grid container>
               <Grid item xs>
@@ -202,8 +184,8 @@ if(login){
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="/login" variant="body2">
+                  {"Already have an account? Sign In"}
                 </Link>
               </Grid>
             </Grid>
