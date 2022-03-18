@@ -11,10 +11,9 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {Alert} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import React,{useEffect,useState} from 'react'
-import Signup from './signup';
+
 
 function Copyright(props) {
   return (
@@ -77,6 +76,7 @@ if(login){
       .then(function (response) {
         if(response === true){
           sessionStorage.setItem('login',true);
+          sessionStorage.setItem('username',value.username);
           window.location.reload();
         }
         else{

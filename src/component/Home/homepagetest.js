@@ -35,12 +35,22 @@ const theme = createTheme();
 const isLoggedIn = sessionStorage.getItem("login");
 
 export default function Album() {
+    const Username = sessionStorage.getItem('username');
     const [data, setData] = useState();
     useEffect(() => {
         fetch('https://localhost:7281/book')
           .then((response) => response.json())
           .then((json) => setData(json));
       }, []);
+      useEffect(() => {
+        fetch('https://localhost:7281/User?username='+Username)
+        .then(response => response.json()) 
+        .then(function (response) {
+            sessionStorage.setItem('userid',response);
+        } 
+        );
+    },[]
+    );
 
      
   return isLoggedIn ? (
@@ -106,7 +116,9 @@ export default function Album() {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">View</Button>
+                    <Button size="small">
+                    <Link style={{textDecoration:'none'}} href={`/${b.id}`}>View</Link>
+                  </Button>
                     <Button size="small">Edit</Button>
                   </CardActions>
                 </Card>

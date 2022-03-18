@@ -16,6 +16,7 @@ export class Navigation extends Component{
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav>
                         <NavLink className="d-inline p-2 text-white" style={{marginLeft:'30px', textDecoration:'none'}} to="/">Home</NavLink>
+                        <NavLink className="d-inline p-2 text-white" style={{textDecoration:'none'}} to="/request">Your Requests</NavLink>
                         {(isLoggedIn ? <NavLink className="d-inline p-2 text-white" to="/login" style={{ textDecoration:'none'}} onClick={Logout}>Logout</NavLink> : <NavLink className="d-inline p-2 text-white" style={{textDecoration:'none'}} to="/login">Login</NavLink>)}
                     </Nav>
                     </Navbar.Collapse>
