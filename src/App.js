@@ -7,6 +7,8 @@ import YourRequest from './component/Home/yourrequest';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Signup from './component/Login/signup';
 import DeleteRequest from './component/Home/deleterequest';
+import Manage from './component/Home/manage';
+import UpdateUser from './component/Home/updateuser';
 
 function App() {
   
@@ -21,6 +23,8 @@ function App() {
         <Route path="/:id" element={<BookDetail />} />
         <Route path="/request" element={<YourRequest />} />
         <Route path="/request/:id" element={<DeleteRequest />} />
+        <Route path="/updateuser/:id" element={<UpdateUser />} />
+        <Route path="/manage" element={<Manage />} />
       </Routes>
     </div>
     </BrowserRouter>

@@ -43,14 +43,26 @@ export default function Album() {
           .then((json) => setData(json));
       }, []);
       useEffect(() => {
-        fetch('https://localhost:7281/User?username='+Username)
+        fetch('https://localhost:7281/User/getUserId?username='+Username)
         .then(response => response.json()) 
         .then(function (response) {
             sessionStorage.setItem('userid',response);
         } 
         );
-    },[]
-    );
+    },[]);
+    useEffect(() => {
+      fetch('https://localhost:7281/User/getUserPermission?username='+Username)
+      .then(response => response.json()) 
+      .then(function (response) {
+       if(response === true){
+        sessionStorage.setItem('isAdmin',true);
+       }
+      } 
+      );
+  },[]
+  );
+    
+    
 
      
   return isLoggedIn ? (
