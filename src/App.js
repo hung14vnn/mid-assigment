@@ -9,6 +9,8 @@ import Signup from './component/Login/signup';
 import DeleteRequest from './component/Home/deleterequest';
 import Manage from './component/Home/manage';
 import UpdateUser from './component/Home/updateuser';
+import UpdateBook from './component/Home/updatebook';
+import UpdateRequest from './component/Home/updaterequest';
 
 function App() {
   
@@ -24,6 +26,8 @@ function App() {
         <Route path="/request" element={<YourRequest />} />
         <Route path="/request/:id" element={<DeleteRequest />} />
         <Route path="/updateuser/:id" element={<UpdateUser />} />
+        <Route path="/updatebook/:id" element={<UpdateBook />} />
+        <Route path="/updaterequest/:id" element={<UpdateRequest />} />
         <Route path="/manage" element={<Manage />} />
       </Routes>
     </div>

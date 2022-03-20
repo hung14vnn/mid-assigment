@@ -37,9 +37,11 @@ const isLoggedIn = sessionStorage.getItem("login");
 export default function Album() {
     const Username = sessionStorage.getItem('username');
     const [data, setData] = useState();
+    const [dataCategory, setDataCategory] = useState();
     useEffect(() => {
         fetch('https://localhost:7281/book')
           .then((response) => response.json())
+          
           .then((json) => setData(json));
       }, []);
       useEffect(() => {
@@ -50,6 +52,12 @@ export default function Album() {
         } 
         );
     },[]);
+    useEffect(() => {
+      fetch('https://localhost:7281/Category/GetCategories')
+        .then((response) => response.json())
+        .then((json) => setDataCategory(json));
+    }, []);
+    
     useEffect(() => {
       fetch('https://localhost:7281/User/getUserPermission?username='+Username)
       .then(response => response.json()) 
@@ -124,14 +132,21 @@ export default function Album() {
                     {b.bookName}
                     </Typography>
                     <Typography>
-                    Book Code: {b.id}
+                    Book Code: {b.id} 
+                    </Typography>
+                    <Typography>
+                     {dataCategory && dataCategory.map((c) => (
+                                        <div key={c.id}>
+                                            {c.id === b.categoryID && c.name}
+                                        </div>
+                                    ))}
                     </Typography>
                   </CardContent>
                   <CardActions>
                     <Button size="small">
                     <Link style={{textDecoration:'none'}} href={`/${b.id}`}>View</Link>
                   </Button>
-                    <Button size="small">Edit</Button>
+
                   </CardActions>
                 </Card>
               </Grid>

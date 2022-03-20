@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-export default function DeleteUser() {
+export default function UpdateUser() {
     const RequestId = useParams().id
     const [data, setData] = useState();
     const [permission, setPermission] = useState();
@@ -44,7 +44,7 @@ export default function DeleteUser() {
     
 
     useEffect(()=>{
-        fetch('https://localhost:7281/User/getUserById?id='+RequestId)
+        fetch('https://localhost:7281/User/GetUserById?id='+RequestId)
         .then(response => response.json())
         .then(json => setData(json));
     } ,[]
@@ -73,7 +73,7 @@ export default function DeleteUser() {
         })
   };
     return (
-<Box sx={{ minWidth: 10 }}>
+        <Box sx={{ minWidth: 10 }}>
       <FormControl style={{ margin:'20px'}}>
         <InputLabel>Permission</InputLabel>
         <Select
@@ -83,7 +83,7 @@ export default function DeleteUser() {
           onChange={handleChange}
         >
           <MenuItem value={true}>Administrator</MenuItem>
-          <MenuItem value={false}>Basic user</MenuItem>
+          <MenuItem value={false}>Basic account</MenuItem>
         </Select>
         <div>
         <Button onClick={handleSubmit} type="submit" variant="outlined" color="success"><Link style={{ textDecoration:'none'}} to="/manage">Update</Link></Button> 
