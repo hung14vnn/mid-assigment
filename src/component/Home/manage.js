@@ -1,12 +1,12 @@
 import React from "react";
-import {Table} from "react-bootstrap";
+import {ButtonToolbar, Table} from "react-bootstrap";
 import { useState, useEffect } from 'react';
 import {Link} from "react-router-dom";
 import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Typography from '@mui/material/Typography';
 
 export default function Manage(){
+
 const [data, setData] = useState();
 const [dataBook, setDataBook] = useState();
 const [data2, setData2] = useState();
@@ -14,6 +14,7 @@ const [dataUser, setDataUser] = useState();
 const [dataRequest, setDataRequest] = useState();
 const id = sessionStorage.getItem("userid");
 const isAdmin = sessionStorage.getItem("isAdmin");
+
 
 useEffect(() => {
     fetch('https://localhost:7281/User/GetUsers')
@@ -102,6 +103,12 @@ useEffect(() => {
                     </tbody>
 
                 </Table>
+
+                    <Button variant="outlined" color="success">
+                        <Link to={`/addbook`} style={{ textDecoration:'none'}} >Add Book</Link>
+                    </Button>
+                  
+
           
             
                 <h3 style={{ marginTop:"10px", marginLeft:"30px"}}>Requests Management</h3>

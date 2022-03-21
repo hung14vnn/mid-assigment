@@ -11,6 +11,7 @@ import Manage from './component/Home/manage';
 import UpdateUser from './component/Home/updateuser';
 import UpdateBook from './component/Home/updatebook';
 import UpdateRequest from './component/Home/updaterequest';
+import AddBook from './component/Home/addbook';
 
 function App() {
   
@@ -29,6 +30,7 @@ function App() {
         <Route path="/updatebook/:id" element={<UpdateBook />} />
         <Route path="/updaterequest/:id" element={<UpdateRequest />} />
         <Route path="/manage" element={<Manage />} />
+        <Route path="/addbook" element={<AddBook />} />
       </Routes>
     </div>
     </BrowserRouter>
